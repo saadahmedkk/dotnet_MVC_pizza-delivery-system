@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/MainMasterLayOut.cshtml";
+}
+<h2>Orders</h2>
+
+<table class="table table-bordered">
+    @foreach (var item in Model.checkOutItems)
+    {
+        <tr>
+            <td>@item.OrderID</td>
+            <td>@item.Address</td>
+            <td>@item.City</td>
+        </tr>
+    }
+    
+</table>

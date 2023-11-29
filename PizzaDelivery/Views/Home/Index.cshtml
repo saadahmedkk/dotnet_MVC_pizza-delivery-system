@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainMasterLayOut.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Card List</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Add custom CSS for horizontal scrolling */
+        .scrolling-wrapper {
+            overflow-x: scroll;
+            white-space: nowrap;
+        }
+
+        /* Optional: Add some margin for better spacing */
+        .pizza-card {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+    <h1>@ViewBag.UserName</h1> 
+
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var pizza in Model.pizzas)
+        {
+
+            <form action="/Home/AddtoCart" method="POST" role="form">
+
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="~/AppData/2.jpg" class="card-img-top" />
+                        <div class="card-body">
+                            <h5 class="card-title">@pizza.Title</h5>
+                            <p class="card-text">@pizza.Description</p>
+
+                            <select class="form-select" id="Size" name="Size">
+                                <option value="Small,@pizza.SmallPrice">Small Price  Rs.@pizza.SmallPrice</option>
+                                <option value="Medium,@pizza.MediumPrice">Medium Price Rs.@pizza.MediumPrice</option>
+                                <option value="Large,@pizza.LargePrice">Large Price Rs.@pizza.LargePrice</option>
+                            </select>
+
+                            <input type="hidden" id="PizzaID" name="PizzaID" value="@pizza.PizzaID">
+
+                            <input type="number" id="Quantity" name="Quantity" value="1">
+
+
+                            <input type="hidden" id="UserID" name="UserID" value=11>
+
+
+                            <button type="submit" class="btn btn-primary">AddtoCart</button>
+
+                                             </div>
+                    </div>
+                </div>
+
+
+
+
+            </form>
+        }
+    </div>
+           
+        
+
+
+
+
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+
+</body>
+</html>

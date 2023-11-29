@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <h1>Check Out Details</h1>
+    <h3> Delivery Details</h3>
+    <div>
+        <form action="/CheckOut/CreateOrder/" method="POST" role="form">
+            <div class="form-group">
+                <h1>@ViewBag.UserName</h1>
+                <input type="text" class="form-control" id="Email" name="Email" placeholder="@ViewBag.UserName" value="@ViewBag.UserName" readonly>
+            </div>
+            <div class="form-group">
+                <select class="form-select" id="DeliveryID" name="DeliveryID">
+                    @foreach (var address in Model)
+                    {
+                        <option value="@address.AddressId">@address.Address,@address.City</option>
+
+                    }
+                </select>
+            </div>
+            <h1>Total: @ViewBag.TotalPrice</h1>
+            <button type="submit" class="btn btn-primary">Payment</button>
+        </form>
+
+        
+       
+    </div>
+</body>
+</html>

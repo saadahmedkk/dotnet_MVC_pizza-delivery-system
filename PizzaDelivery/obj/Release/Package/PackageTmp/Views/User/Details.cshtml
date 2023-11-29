@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/MainMasterLayOut.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title>Details</title>
+</head>
+<body>
+    <a class="btn btn-outline-success" href="/User/AddUser/">Add User</a>
+    <div class="container">
+        <table class="table table-bordered">
+
+            @foreach (var User in Model)
+            {
+                <tr>
+                    <td>@User.UserID</td>
+                    <td>@User.UserFirstName</td>
+                    <td>@User.UserLastName</td>
+                    <td>@User.Email</td>
+                    <td>@User.Password</td>
+                    <td>@User.DOB</td>
+                    <td>@User.Address</td>
+                    <td>@User.Role</td>
+                    <td><a class="btn btn-secondary" href="/User/EditUser/@User.UserID">Edit/Update</a></td>
+
+                </tr>
+            }
+
+
+        </table>
+
+
+
+    </div>
+</body>
+</html>

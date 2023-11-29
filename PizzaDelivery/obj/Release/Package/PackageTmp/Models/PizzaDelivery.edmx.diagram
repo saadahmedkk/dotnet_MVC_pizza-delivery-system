@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3253778ac17b405a8b6686bbd1e83dc6" Name="Diagram1" ZoomLevel="107">
+        <EntityTypeShape EntityType="Pizza_DeliveryModel.Pizza" Width="1.5" PointX="6.75" PointY="1.75" />
+        <EntityTypeShape EntityType="Pizza_DeliveryModel.UserDetail" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="Pizza_DeliveryModel.UserOrder" Width="1.5" PointX="3.125" PointY="0.5" />
+        <AssociationConnector Association="Pizza_DeliveryModel.FK_UserOrders_UserDetails" />
+        <EntityTypeShape EntityType="Pizza_DeliveryModel.AddtoCart" Width="1.5" PointX="4" PointY="3.125" />
+        <AssociationConnector Association="Pizza_DeliveryModel.FK_AddtoCart_Pizza" />
+        <AssociationConnector Association="Pizza_DeliveryModel.FK_AddtoCart_UserDetails" />
+        <EntityTypeShape EntityType="Pizza_DeliveryModel.DeliveryAddress" Width="1.5" PointX="1.5" PointY="4.875" />
+        <AssociationConnector Association="Pizza_DeliveryModel.FK_DeliveryAddress_UserDetails" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

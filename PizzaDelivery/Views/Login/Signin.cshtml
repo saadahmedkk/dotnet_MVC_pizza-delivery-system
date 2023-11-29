@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Signin";
+    Layout = "~/Views/Shared/MainMasterLayOut.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title>Sigin</title>
+</head>
+<body>
+
+    <form action="/Login/Signin" method="POST" role="form">
+        <legend>Sign In</legend>
+
+        <table class="table table-hover">
+            <tbody>
+                
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        <input type="text" name="Email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>
+                        <input type="password" name="Password" />
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <button type="submit" class="btn btn-primary" name="btnLogin" value="Sign In">Submit</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+
+
+    </form>
+
+</body>
+</html>
+

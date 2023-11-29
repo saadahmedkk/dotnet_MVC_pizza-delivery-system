@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/MainMasterLayOut.cshtml";
+}
+
+<h2>Details</h2>
+
+<a href="/UserAddress/Create" >Add address</a>
+<table class="table table-bordered">
+    @foreach (var detail in Model)
+    {
+        <tr>
+            <td>@detail.UserID</td>
+            <td>@detail.Address</td>
+            <td>@detail.City</td>
+            <td>@detail.State</td>
+            <td>@detail.Country</td>
+            <td>@detail.Pincode</td>
+            <td><a href="/UserAddress/Delete/@detail.AddressId">Delete</a></td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,46 @@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title>EditPizza</title>
+</head>
+<body>
+    
+    <form action="" method="POST" role="form">
+        <legend>Form title</legend>
+    
+        <div class="form-group">
+            <label for="">label</label>
+            <input type="text" class="form-control" id="" placeholder="Input field">
+        </div>
+    
+        
+    
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+
+
+    <div>
+    
+        <input type="text" name="PizzaID" value="@Model.PizzaID" />
+        <input type="text" name="PizzaTitle" value="@Model.Title" />
+        <input type="text" name="Category" value="@Model.Category" />
+        <input type="text" name="Description" value="@Model.Description" />
+        <input type="text" name="SmallPrice" value="@Model.SmallPrice" />
+        <input type="text" name="MediumPrice" value="@Model.MediumPrice" />
+        <input type="text" name="LargePrice" value="@Model.LargePrice" />
+
+
+
+    </div>
+</body>
+</html>

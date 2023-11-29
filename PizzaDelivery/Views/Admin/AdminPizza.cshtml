@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "AdminPizza";
+    Layout = "~/Views/Shared/MainMasterLayOut.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title>Show</title>
+</head>
+<body>
+
+
+    <a class="btn btn-outline-success" href="/Admin/CreatePizza/">Add Pizzaa</a>
+    <div class="container">
+        <table class="table table-bordered">
+            <tr>
+                <th>Pizza ID</th>
+                <th>Pizza Title</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Small Prices</th>
+                <th>Medium Prices</th>
+                <th>Large Prices</th>
+                <th>Picture Paths</th>
+                <th colspan="2">Operation</th>
+
+            </tr>
+            @foreach (var pizza in Model.pizzas)
+            {
+                <tr>
+                    <td>@pizza.PizzaID</td>
+                    <td>@pizza.Title</td>
+                    <td>@pizza.Category</td>
+                    <td>@pizza.Description</td>
+                    <td>@pizza.SmallPrice</td>
+                    <td>@pizza.MediumPrice</td>
+                    <td>@pizza.LargePrice</td>
+                    <td>@pizza.Picture</td>
+                    <td><a class="btn btn-secondary" href="/Admin/EditPizza/@pizza.PizzaID">Edit/Update</a></td>
+                    <td><a class="btn btn-danger" href="/Admin/Delete/@pizza.PizzaID">Delete</a></td>
+                </tr>
+            }
+
+
+        </table>
+
+
+
+    </div>
+
+</body>
+</html>
+

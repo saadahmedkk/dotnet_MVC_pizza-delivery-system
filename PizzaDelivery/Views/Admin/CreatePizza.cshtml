@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "CreatePizza";
+    Layout = "~/Views/Shared/MainMasterLayOut.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title>EditPizza</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/Admin/AfterCreatePizza/" method="POST" role="form">
+            <legend>Add/Create Form of Pizza</legend>
+
+            <div class="form-group">
+                <label for="PizzaID">PizzaID</label>
+                <input type="text" class="form-control" id="PizzaID" name="PizzaID" placeholder="PizzaID is number">
+            </div>
+
+            <div class="form-group">
+                <label for="Title">Title</label>
+                <input type="text" class="form-control" id="Title" name="Title" placeholder="Title is text">
+            </div>
+
+            <div class="form-group">
+                <label for="Category">Category</label>
+                <input type="text" class="form-control" id="Category" name="Category" placeholder="Category is veg or non-veg">
+            </div>
+
+            <div class="form-group">
+                <label for="Description">Description</label>
+                <input type="text" class="form-control" id="Description" name="Description" placeholder="Description">
+            </div>
+
+            <div class="form-group">
+                <label for="SmallPrice">Small Price</label>
+                <input type="text" class="form-control" id="SmallPrice" name="SmallPrice" placeholder="Small Price of pizza">
+            </div>
+
+            <div class="form-group">
+                <label for="LargePrice">Large Price</label>
+                <input type="text" class="form-control" id="LargePrice" name="LargePrice" placeholder="Large Price of pizza">
+            </div>
+
+            <div class="form-group">
+                <label for="MediumPrice">Medium Price</label>
+                <input type="text" class="form-control" id="MediumPrice" name="MediumPrice" placeholder="Medium Price of pizza">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+
+        </form>
+
+    </div>
+</body>
+</html>
+

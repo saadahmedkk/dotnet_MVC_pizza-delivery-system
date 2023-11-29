@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Pizza_DeliveryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Pizza_DeliveryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Pizzas" EntityType="Pizza_DeliveryModel.Pizza" />
+    <EntitySet Name="UserDetails" EntityType="Pizza_DeliveryModel.UserDetail" />
+    <EntitySet Name="UserOrders" EntityType="Pizza_DeliveryModel.UserOrder" />
+    <AssociationSet Name="FK_UserOrders_UserDetails" Association="Pizza_DeliveryModel.FK_UserOrders_UserDetails">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="UserOrder" EntitySet="UserOrders" />
+    </AssociationSet>
+    <EntitySet Name="AddtoCarts" EntityType="Pizza_DeliveryModel.AddtoCart" />
+    <AssociationSet Name="FK_AddtoCart_Pizza" Association="Pizza_DeliveryModel.FK_AddtoCart_Pizza">
+      <End Role="Pizza" EntitySet="Pizzas" />
+      <End Role="AddtoCart" EntitySet="AddtoCarts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AddtoCart_UserDetails" Association="Pizza_DeliveryModel.FK_AddtoCart_UserDetails">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="AddtoCart" EntitySet="AddtoCarts" />
+    </AssociationSet>
+    <EntitySet Name="DeliveryAddresses" EntityType="Pizza_DeliveryModel.DeliveryAddress" />
+    <AssociationSet Name="FK_DeliveryAddress_UserDetails" Association="Pizza_DeliveryModel.FK_DeliveryAddress_UserDetails">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="DeliveryAddress" EntitySet="DeliveryAddresses" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Pizza">
+    <Key>
+      <PropertyRef Name="PizzaID" />
+    </Key>
+    <Property Name="PizzaID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="Picture" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="SmallPrice" Type="Int32" Nullable="false" />
+    <Property Name="MediumPrice" Type="Int32" Nullable="false" />
+    <Property Name="LargePrice" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AddtoCarts" Relationship="Pizza_DeliveryModel.FK_AddtoCart_Pizza" FromRole="Pizza" ToRole="AddtoCart" />
+  </EntityType>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserFirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserLastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserOrders" Relationship="Pizza_DeliveryModel.FK_UserOrders_UserDetails" FromRole="UserDetail" ToRole="UserOrder" />
+    <NavigationProperty Name="AddtoCarts" Relationship="Pizza_DeliveryModel.FK_AddtoCart_UserDetails" FromRole="UserDetail" ToRole="AddtoCart" />
+    <NavigationProperty Name="DeliveryAddresses" Relationship="Pizza_DeliveryModel.FK_DeliveryAddress_UserDetails" FromRole="UserDetail" ToRole="DeliveryAddress" />
+  </EntityType>
+  <EntityType Name="UserOrder">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OrderTotal" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserDetail" Relationship="Pizza_DeliveryModel.FK_UserOrders_UserDetails" FromRole="UserOrder" ToRole="UserDetail" />
+  </EntityType>
+  <Association Name="FK_UserOrders_UserDetails">
+    <End Type="Pizza_DeliveryModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+    <End Type="Pizza_DeliveryModel.UserOrder" Role="UserOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserOrder">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AddtoCart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PizzaID" Type="Int32" Nullable="false" />
+    <Property Name="Size" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pizza" Relationship="Pizza_DeliveryModel.FK_AddtoCart_Pizza" FromRole="AddtoCart" ToRole="Pizza" />
+    <NavigationProperty Name="UserDetail" Relationship="Pizza_DeliveryModel.FK_AddtoCart_UserDetails" FromRole="AddtoCart" ToRole="UserDetail" />
+  </EntityType>
+  <Association Name="FK_AddtoCart_Pizza">
+    <End Type="Pizza_DeliveryModel.Pizza" Role="Pizza" Multiplicity="1" />
+    <End Type="Pizza_DeliveryModel.AddtoCart" Role="AddtoCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pizza">
+        <PropertyRef Name="PizzaID" />
+      </Principal>
+      <Dependent Role="AddtoCart">
+        <PropertyRef Name="PizzaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AddtoCart_UserDetails">
+    <End Type="Pizza_DeliveryModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+    <End Type="Pizza_DeliveryModel.AddtoCart" Role="AddtoCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="AddtoCart">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DeliveryAddress">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pincode" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserDetail" Relationship="Pizza_DeliveryModel.FK_DeliveryAddress_UserDetails" FromRole="DeliveryAddress" ToRole="UserDetail" />
+  </EntityType>
+  <Association Name="FK_DeliveryAddress_UserDetails">
+    <End Type="Pizza_DeliveryModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+    <End Type="Pizza_DeliveryModel.DeliveryAddress" Role="DeliveryAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="DeliveryAddress">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
